@@ -8,17 +8,29 @@ A comprehensive study management application built with React, TypeScript, and T
 
 <div align="center">
 
+### Login Page
+![Login](screenshots/loginpage.png)
+
 ### Dashboard Overview
-![Dashboard](screenshots/dashboard.png)
+![Dashboard](screenshots/overview.png)
 
 ### Task Management
 ![Tasks](screenshots/tasks.png)
 
 ### Study Planner
-![Study Planner](screenshots/study-planner.png)
+![Study Planner](screenshots/studyplanner.png)
 
 ### Test Generator
-![Test Generator](screenshots/test-generator.png)
+![Test Generator](screenshots/testgenerator.png)
+
+### Flashcards
+![Flashcards](screenshots/flashcards.png)
+
+### Analytics Dashboard
+![Analytics](screenshots/analytics.png)
+
+### Settings
+![Settings](screenshots/settings.png)
 
 </div>
 
