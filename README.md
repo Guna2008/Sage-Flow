@@ -26,13 +26,24 @@ Keep track of everything you need to do with our task management system. You can
 
 ### Study Planner
 
-The study planner is designed to help you prepare for multiple exams simultaneously. Start by adding your subjects along with their exam dates, then break each subject down into topics with estimated study hours. Once you've set everything up, the planner automatically generates a balanced study schedule that distributes your topics across available days. You can customize how many hours per day you want to study, and the system ensures you cover everything before your exams. If you miss a session, there's a reschedule feature that moves missed sessions to upcoming days. You can also drag and drop sessions between days to adjust your schedule as needed, and print your schedule for offline reference.
+The study planner is designed to help you prepare for multiple exams simultaneously. Start by adding your subjects along with their exam dates, then break each subject down into topics with estimated study hours. Once you've set everything up, the planner automatically generates a balanced study schedule that distributes your topics across available days.
+
+- Customize study hours per day
+- Automatic schedule generation with round-robin distribution
+- Drag and drop sessions between days
+- Reschedule missed sessions automatically
+- Print schedule for offline reference
 
 ![Study Planner](screenshots/studyplanner.png)
 
 ### Test Generator
 
-Practice makes perfect, and the test generator helps you create practice tests from any study material. Simply paste your text content, and the system generates multiple-choice questions and fill-in-the-blank exercises. After completing a test, you get instant feedback with your score and can review which questions you got right or wrong. All your test attempts are saved in the history so you can track your improvement over time.
+Practice makes perfect, and the test generator helps you create practice tests from any study material. Simply paste your text content, and the system generates multiple-choice questions and fill-in-the-blank exercises.
+
+- Generate MCQ and fill-in-the-blank questions
+- Instant scoring and feedback
+- Review correct and incorrect answers
+- Track test history and improvement
 
 ![Test Generator](screenshots/testgenerator.png)
 
@@ -54,12 +65,26 @@ Understand your study patterns with the analytics dashboard. It shows you statis
 
 ### Settings
 
-Personalize your experience through the settings page. You can edit your profile information, change your password for security, and toggle dark mode for comfortable studying at any time of day. The export feature lets you backup all your data as a JSON file, which you can later import if you switch devices or need to restore your information. There's also an option to delete your account if needed.
+Personalize your experience through the settings page. You can edit your profile information, change your password for security, and toggle dark mode for comfortable studying at any time of day.
+
+- Edit profile information
+- Change password
+- Dark mode toggle
+- Export/Import data backup
+- Delete account option
 
 ![Settings](screenshots/settings.png)
 
 ## Tech Stack
 
-The application is built using React 18 with TypeScript for type safety and better development experience. Tailwind CSS handles all the styling, while shadcn/ui components (built on Radix UI) provide accessible and customizable interface elements. React Router v6 manages navigation between pages, and Recharts powers the analytics visualizations. Lucide React supplies the icons throughout the app. Vite serves as the build tool for fast development and optimized production builds. All data is stored locally in your browser using LocalStorage, which means your information stays private and accessible even offline.
+- **Frontend:** React 18 with TypeScript
+- **Styling:** Tailwind CSS
+- **UI Components:** shadcn/ui (Radix UI)
+- **Routing:** React Router v6
+- **Charts:** Recharts
+- **Icons:** Lucide React
+- **Build Tool:** Vite
+- **State Management:** React Context API
+- **Data Persistence:** LocalStorage
 
 
