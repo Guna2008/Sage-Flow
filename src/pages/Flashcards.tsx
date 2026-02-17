@@ -157,12 +157,12 @@ const Flashcards = () => {
                 />
               </div>
               <div className="space-y-2">
-                <Label>Front (Question)</Label>
-                <Textarea placeholder="What is photosynthesis?" value={front} onChange={(e) => setFront(e.target.value)} rows={3} />
+                <Label>Question</Label>
+                <Textarea placeholder="Enter your question" value={front} onChange={(e) => setFront(e.target.value)} rows={3} />
               </div>
               <div className="space-y-2">
-                <Label>Back (Answer)</Label>
-                <Textarea placeholder="The process by which plants convert light energy..." value={back} onChange={(e) => setBack(e.target.value)} rows={3} />
+                <Label>Answer</Label>
+                <Textarea placeholder="Enter the answer" value={back} onChange={(e) => setBack(e.target.value)} rows={3} />
               </div>
               <Button type="submit" className="w-full">
                 <Plus className="w-4 h-4 mr-2" /> Add Card
