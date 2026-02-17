@@ -6,41 +6,21 @@ A comprehensive study management application built with React, TypeScript, and T
 
 ## 📸 Screenshots
 
-<div align="center">
-
 ### Login Page
 ![Login](screenshots/loginpage.png)
 
 ### Dashboard Overview
 ![Dashboard](screenshots/overview.png)
 
-### Task Management
-![Tasks](screenshots/tasks.png)
-
-### Study Planner
-![Study Planner](screenshots/studyplanner.png)
-
-### Test Generator
-![Test Generator](screenshots/testgenerator.png)
-
-### Flashcards
-![Flashcards](screenshots/flashcards.png)
-
-### Analytics Dashboard
-![Analytics](screenshots/analytics.png)
-
-### Settings
-![Settings](screenshots/settings.png)
-
-</div>
-
-# Features
+## Features
 
 ### Task Management
 - Create, complete, and delete tasks
 - Set priorities (Low, Medium, High)
 - Set due dates
 - Track completion status
+
+![Tasks](screenshots/tasks.png)
 
 ### Study Planner
 - Create subjects with exam dates
@@ -50,11 +30,15 @@ A comprehensive study management application built with React, TypeScript, and T
 - Reschedule missed sessions
 - Print study schedule
 
+![Study Planner](screenshots/studyplanner.png)
+
 ### Test Generator
 - Generate MCQ tests from any text
 - Fill-in-the-blank questions
 - Instant scoring and feedback
 - Track test history
+
+![Test Generator](screenshots/testgenerator.png)
 
 ### Pomodoro Timer
 - Customizable work/break intervals
@@ -67,11 +51,15 @@ A comprehensive study management application built with React, TypeScript, and T
 - Flip cards to reveal answers
 - Perfect for memorization
 
+![Flashcards](screenshots/flashcards.png)
+
 ### Analytics Dashboard
 - Task completion statistics
 - Study hours by subject
 - Test score tracking
 - Visual charts and graphs
+
+![Analytics](screenshots/analytics.png)
 
 ### Settings
 - Edit profile information
@@ -79,6 +67,8 @@ A comprehensive study management application built with React, TypeScript, and T
 - Dark mode toggle
 - Export/Import data backup
 - Delete account
+
+![Settings](screenshots/settings.png)
 
 ##  Tech Stack
 
