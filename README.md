@@ -4,11 +4,11 @@
 
 Sage Flow is a comprehensive study management application designed to help students stay organized and productive. Built with modern web technologies including React, TypeScript, and Tailwind CSS, it provides an intuitive interface for managing your academic life. Whether you're juggling multiple subjects, preparing for exams, or trying to maintain a consistent study routine, Sage Flow has the tools you need to succeed.
 
-## 🚀 Live Demo
+## 🚀 
+Live Demo
 
 **[View Live Demo](https://sage-flow-gamma.vercel.app)**
 
-## 📸 Screenshots
 
 ### Login Page
 ![Login](screenshots/loginpage.png)
