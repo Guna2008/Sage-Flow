@@ -144,19 +144,39 @@ const StudyPlanner = () => {
     const entries: ScheduleEntry[] = [];
     const today = startOfDay(new Date());
     const dateHoursUsed: Record<string, number> = {};
+    const dateSubjectsUsed: Record<string, Set<string>> = {};
 
-    for (const topic of allTopics) {
-      let remainingHours = topic.hoursNeeded;
-      const startDay = today;
+    // Round-robin distribution: cycle through topics to mix subjects daily
+    let topicIndex = 0;
+    let currentDay = today;
+    const maxDays = 365; // safety limit
+    let daysProcessed = 0;
 
-      let currentDay = startDay;
-      while (remainingHours > 0 && differenceInDays(currentDay, topic.examDate) < 0) {
-        const dateKey = format(currentDay, "yyyy-MM-dd");
-        const usedHours = dateHoursUsed[dateKey] || 0;
-        const availableHours = Math.max(0, hoursPerDay - usedHours);
+    // Track remaining hours for each topic
+    const topicRemainingHours = new Map(allTopics.map(t => [t.id, t.hoursNeeded]));
 
-        if (availableHours > 0) {
-          const allocatedHours = Math.min(remainingHours, availableHours, 2); // max 2hrs per session
+    while (topicRemainingHours.size > 0 && daysProcessed < maxDays) {
+      const dateKey = format(currentDay, "yyyy-MM-dd");
+      const usedHours = dateHoursUsed[dateKey] || 0;
+      
+      if (usedHours >= hoursPerDay) {
+        currentDay = addDays(currentDay, 1);
+        daysProcessed++;
+        continue;
+      }
+
+      // Find next topic that still needs hours and hasn't passed exam date
+      let attempts = 0;
+      let foundTopic = false;
+      
+      while (attempts < allTopics.length && !foundTopic) {
+        const topic = allTopics[topicIndex % allTopics.length];
+        const remaining = topicRemainingHours.get(topic.id) || 0;
+        
+        if (remaining > 0 && differenceInDays(currentDay, topic.examDate) < 0) {
+          const availableHours = hoursPerDay - usedHours;
+          const allocatedHours = Math.min(remaining, availableHours, 2); // max 2hrs per session
+          
           entries.push({
             id: crypto.randomUUID(),
             subjectId: topic.subjectId,
@@ -168,10 +188,26 @@ const StudyPlanner = () => {
             completed: false,
             color: topic.color,
           });
+          
           dateHoursUsed[dateKey] = usedHours + allocatedHours;
-          remainingHours -= allocatedHours;
+          const newRemaining = remaining - allocatedHours;
+          
+          if (newRemaining <= 0) {
+            topicRemainingHours.delete(topic.id);
+          } else {
+            topicRemainingHours.set(topic.id, newRemaining);
+          }
+          
+          foundTopic = true;
         }
+        
+        topicIndex++;
+        attempts++;
+      }
+      
+      if (!foundTopic) {
         currentDay = addDays(currentDay, 1);
+        daysProcessed++;
       }
     }
 
