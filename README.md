@@ -87,3 +87,6 @@ Personalize your experience through the settings page. You can edit your profile
 - **Data Persistence:** LocalStorage
 
 
+
+**If you found this useful, please leave a ⭐**
+
