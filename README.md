@@ -88,5 +88,5 @@ Personalize your experience through the settings page. You can edit your profile
 
 
 
-**If you found this useful, please leave a ⭐**
+## If you found this useful, please leave a ⭐
 
