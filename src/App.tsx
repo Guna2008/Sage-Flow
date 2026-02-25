@@ -7,6 +7,9 @@ import { AuthProvider } from "@/contexts/AuthContext";
 import Index from "./pages/Index";
 import Login from "./pages/Login";
 import Signup from "./pages/signup";
+import VerifyEmail from "./pages/VerifyEmail";
+import VerifyDevice from "./pages/VerifyDevice";
+import AuthCallback from "./pages/AuthCallback";
 import DashboardLayout from "./layouts/DashboardLayout";
 import Overview from "./pages/Overview";
 import Tasks from "./pages/Tasks";
@@ -31,6 +34,9 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
+            <Route path="/verify-email" element={<VerifyEmail />} />
+            <Route path="/verify-device" element={<VerifyDevice />} />
+            <Route path="/auth/callback" element={<AuthCallback />} />
             <Route path="/dashboard" element={<DashboardLayout />}>
               <Route index element={<Overview />} />
               <Route path="tasks" element={<Tasks />} />
