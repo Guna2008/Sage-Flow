@@ -10,6 +10,7 @@ import { format, differenceInDays, addDays, isToday, isBefore, startOfDay } from
 import { CalendarIcon, Plus, Trash2, GripVertical, RotateCcw, BookOpen, Clock, AlertTriangle, Printer } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";
+import { HelpTooltip } from "@/components/HelpTooltip";
 
 interface Topic {
   id: string;
@@ -292,7 +293,10 @@ const StudyPlanner = () => {
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div>
-          <h1 className="text-2xl sm:text-3xl font-bold text-foreground">Study Planner</h1>
+          <h1 className="text-2xl sm:text-3xl font-bold text-foreground">
+            Study Planner
+            <HelpTooltip content="Add subjects with exam dates, then add topics. Click 'Generate Study Plan' to auto-create your schedule. Drag and drop sessions between days to reschedule. Click sessions to mark complete." />
+          </h1>
           <p className="text-muted-foreground mt-1 text-sm sm:text-base">Plan your study schedule across subjects and topics.</p>
         </div>
         {missedCount > 0 && (

@@ -6,6 +6,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Plus, Trash2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { HelpTooltip } from "@/components/HelpTooltip";
 
 interface Task {
   id: string;
@@ -57,7 +58,10 @@ const Tasks = () => {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-3xl font-bold text-foreground">Tasks</h1>
+        <h1 className="text-3xl font-bold text-foreground">
+          Tasks
+          <HelpTooltip content="Create tasks with priority levels. Check them off when complete. Use filters to view active or completed tasks." />
+        </h1>
         <p className="text-muted-foreground mt-1">Manage your study tasks and to-dos.</p>
       </div>
 

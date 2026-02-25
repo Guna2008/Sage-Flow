@@ -2,6 +2,7 @@ import { useAuth } from "@/contexts/AuthContext";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { CheckSquare, BarChart3, CalendarDays, Clock, FileCheck } from "lucide-react";
 import { Link } from "react-router-dom";
+import { OnboardingTour } from "@/components/OnboardingTour";
 
 const Overview = () => {
   const { user } = useAuth();
@@ -24,28 +25,31 @@ const Overview = () => {
   ];
 
   return (
-    <div className="space-y-8">
-      <div>
-        <h1 className="text-3xl font-bold text-foreground">Welcome back, {user?.name?.split(" ")[0]}!</h1>
-        <p className="text-muted-foreground mt-1">Here's your study overview.</p>
-      </div>
+    <>
+      <OnboardingTour />
+      <div className="space-y-8">
+        <div>
+          <h1 className="text-3xl font-bold text-foreground">Welcome back, {user?.name?.split(" ")[0]}!</h1>
+          <p className="text-muted-foreground mt-1">Here's your study overview.</p>
+        </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        {cards.map((c) => (
-          <Link key={c.title} to={c.link}>
-            <Card className="hover:shadow-md transition-shadow cursor-pointer">
-              <CardHeader className="flex flex-row items-center justify-between pb-2">
-                <CardTitle className="text-sm font-medium text-muted-foreground">{c.title}</CardTitle>
-                <c.icon className={`w-5 h-5 ${c.color}`} />
-              </CardHeader>
-              <CardContent>
-                <p className="text-3xl font-bold text-foreground">{c.value}</p>
-              </CardContent>
-            </Card>
-          </Link>
-        ))}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {cards.map((c) => (
+            <Link key={c.title} to={c.link}>
+              <Card className="hover:shadow-md transition-shadow cursor-pointer">
+                <CardHeader className="flex flex-row items-center justify-between pb-2">
+                  <CardTitle className="text-sm font-medium text-muted-foreground">{c.title}</CardTitle>
+                  <c.icon className={`w-5 h-5 ${c.color}`} />
+                </CardHeader>
+                <CardContent>
+                  <p className="text-3xl font-bold text-foreground">{c.value}</p>
+                </CardContent>
+              </Card>
+            </Link>
+          ))}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
