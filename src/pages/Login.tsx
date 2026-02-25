@@ -29,7 +29,12 @@ const Login = () => {
   };
 
   const handleGoogleLogin = () => {
-    window.location.href = "http://localhost:5000/api/auth/google";
+    const googleEnabled = true; // Check if Google OAuth is configured
+    if (googleEnabled) {
+      window.location.href = "http://localhost:5000/api/auth/google";
+    } else {
+      toast({ title: "Google Sign In unavailable", description: "Please use email/password", variant: "destructive" });
+    }
   };
 
   return (
