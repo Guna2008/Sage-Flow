@@ -19,16 +19,18 @@ const Signup = () => {
   if (user) return <Navigate to="/dashboard" replace />;
   const { toast } = useToast();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (password.length < 6) {
       toast({ title: "Weak password", description: "Password must be at least 6 characters", variant: "destructive" });
       return;
     }
-    if (signup(name, email, password)) {
-      navigate("/dashboard");
+    const result = await signup(name, email, password);
+    if (result.success) {
+      toast({ title: "Success!", description: "Check your email to verify your account" });
+      navigate("/login");
     } else {
-      toast({ title: "Signup failed", description: "An account with this email already exists", variant: "destructive" });
+      toast({ title: "Signup failed", description: result.error || "An error occurred", variant: "destructive" });
     }
   };
 
