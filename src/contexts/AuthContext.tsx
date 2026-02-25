@@ -1,14 +1,17 @@
 import { createContext, useContext, useState, useEffect, ReactNode } from "react";
 
+const API_URL = "http://localhost:5000/api/auth";
+
 interface User {
+  id: number;
   email: string;
   name: string;
 }
 
 interface AuthContextType {
   user: User | null;
-  login: (email: string, password: string) => boolean;
-  signup: (name: string, email: string, password: string) => boolean;
+  login: (email: string, password: string) => Promise<{ success: boolean; error?: string }>;
+  signup: (name: string, email: string, password: string) => Promise<{ success: boolean; error?: string }>;
   logout: () => void;
   isLoading: boolean;
 }
@@ -21,48 +24,56 @@ export const useAuth = () => {
   return ctx;
 };
 
-interface StoredUser {
-  name: string;
-  email: string;
-  password: string;
-}
-
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const stored = localStorage.getItem("currentUser");
-    if (stored) setUser(JSON.parse(stored));
+    const token = localStorage.getItem("token");
+    const stored = localStorage.getItem("user");
+    if (token && stored) setUser(JSON.parse(stored));
     setIsLoading(false);
   }, []);
 
-  const login = (email: string, password: string): boolean => {
-    const users: StoredUser[] = JSON.parse(localStorage.getItem("users") || "[]");
-    const found = users.find((u) => u.email === email && u.password === password);
-    if (found) {
-      const u = { email: found.email, name: found.name };
-      setUser(u);
-      localStorage.setItem("currentUser", JSON.stringify(u));
-      return true;
+  const login = async (email: string, password: string) => {
+    try {
+      const res = await fetch(`${API_URL}/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password })
+      });
+      const data = await res.json();
+      if (!res.ok) return { success: false, error: data.error };
+      
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("user", JSON.stringify(data.user));
+      setUser(data.user);
+      return { success: true };
+    } catch (error) {
+      return { success: false, error: "Network error" };
     }
-    return false;
   };
 
-  const signup = (name: string, email: string, password: string): boolean => {
-    const users: StoredUser[] = JSON.parse(localStorage.getItem("users") || "[]");
-    if (users.find((u) => u.email === email)) return false;
-    users.push({ name, email, password });
-    localStorage.setItem("users", JSON.stringify(users));
-    const u = { email, name };
-    setUser(u);
-    localStorage.setItem("currentUser", JSON.stringify(u));
-    return true;
+  const signup = async (name: string, email: string, password: string) => {
+    try {
+      const res = await fetch(`${API_URL}/signup`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, password })
+      });
+      const data = await res.json();
+      if (!res.ok) return { success: false, error: data.error };
+      
+      return { success: true };
+    } catch (error) {
+      return { success: false, error: "Network error" };
+    }
   };
 
   const logout = () => {
     setUser(null);
-    localStorage.removeItem("currentUser");
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
   };
 
   return (
